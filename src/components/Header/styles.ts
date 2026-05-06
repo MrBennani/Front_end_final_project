@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   padding: 86px 0;
-  position: sticky;
+  // position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
