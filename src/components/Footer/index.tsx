@@ -16,17 +16,17 @@ const Footer = () => (
       <Logo src={logo} alt="logo" />
       <SocialLinks>
         <li>
-          <a href="#">
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
             <img src={instagram} alt="instagram-logo" />
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
             <img src={facebook} alt="facebook-logo" />
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="https://www.twitter.com/" target="_blank" rel="noreferrer">
             <img src={twitter} alt="twitter-logo" />
           </a>
         </li>
