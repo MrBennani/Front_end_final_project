@@ -8,7 +8,7 @@ import { Restaurants } from '../../components/Models/Restaurants'
 
 export const Perfil = () => {
   const { id } = useParams()
-  const [prato, setPratos] = useState<Restaurants[]>()
+  const [prato, setPratos] = useState<Restaurants>()
 
   useEffect(() => {
     fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
