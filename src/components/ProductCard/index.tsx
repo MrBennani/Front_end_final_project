@@ -1,9 +1,10 @@
 import { BotaoAdicionar, Card, Descricao, Foto, Titulo } from './styles'
 
 type Props = {
+  id: number
   name: string
   photo: string
-  description: string
+  description: string[]
   onOpen: () => void
 }
 

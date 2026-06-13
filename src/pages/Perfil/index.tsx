@@ -1,62 +1,33 @@
+import { useParams } from 'react-router-dom'
 import BannerPerfil from '../../components/Banner'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import ProductList from '../../components/ProductList'
-import Products from '../../models/Products'
-import pizza from '../../assets/foodImage.png'
+import { useEffect, useState } from 'react'
+import { Restaurants } from '../../components/Models/Restaurants'
 
-const products: Products[] = [
-  {
-    id: 0,
-    name: 'Pizza Marguerita',
-    photo: pizza,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    name: 'Pizza Marguerita',
-    photo: pizza,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 2,
-    name: 'Pizza Marguerita',
-    photo: pizza,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 3,
-    name: 'Pizza Marguerita',
-    photo: pizza,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 4,
-    name: 'Pizza Marguerita',
-    photo: pizza,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 5,
-    name: 'Pizza Marguerita',
-    photo: pizza,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
+export const Perfil = () => {
+  const { id } = useParams()
+  const [prato, setPratos] = useState<Restaurants[]>()
+
+  useEffect(() => {
+    fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setPratos(res))
+  }, [id])
+
+  if (!prato) {
+    return <p>Carregando...</p>
   }
-]
 
-const Perfil = () => (
-  <>
-    <Header />
-    <BannerPerfil />
-    <ProductList products={products} />
-    <Footer />
-  </>
-)
+  return (
+    <>
+      <Header />
+      <BannerPerfil titulo={prato.titulo} tipo={prato.tipo} capa={prato.capa} />
+      <ProductList prato={prato.cardapio} />
+      <Footer />
+    </>
+  )
+}
 
 export default Perfil

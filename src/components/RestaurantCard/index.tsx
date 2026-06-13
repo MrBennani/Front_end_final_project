@@ -21,6 +21,7 @@ type Props = {
 }
 
 const RestaurantCard = ({
+  id,
   title,
   rating,
   image,
@@ -30,7 +31,7 @@ const RestaurantCard = ({
   <CardContainer>
     <CardImage src={image} alt={title} />
     <TagsContainer>
-      {infos.map((info) => (
+      {infos?.map((info) => (
         <Tag key={info}>{info}</Tag>
       ))}
     </TagsContainer>
@@ -43,7 +44,11 @@ const RestaurantCard = ({
         </div>
       </TituloContainer>
       <Descricao>{description}</Descricao>
-      <Button type="link" to="/Perfil" title={'Clique aqui para saber mais'}>
+      <Button
+        type="link"
+        to={`/Perfil/${id}`}
+        title={'Clique aqui para saber mais'}
+      >
         Saiba mais
       </Button>
     </CardContent>

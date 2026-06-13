@@ -1,56 +1,56 @@
 import { useState } from 'react'
-import Products from '../../models/Products'
-import food from '../../assets/foodImage.png'
-import closeIcon from '../../assets/close.png'
 import ProductCard from '../ProductCard'
-import {
-  ListContainer,
-  ModalContainer,
-  MainModal,
-  ModalContent,
-  BotaoModal
-} from './styles'
+import { ListContainer } from './styles'
+import { Prato } from '../Models/Restaurants'
+import { Modal } from '../Modal'
 
-export type Props = {
-  products: Products[]
+export interface Pratos {
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+  foto: string
+  preco: number
 }
 
-const ProductList = ({ products }: Props) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+type Props = {
+  prato: Prato[]
+}
+
+export const ProductList = ({ prato }: Props) => {
+  const [modal, setModal] = useState({
+    isVisible: false,
+    data: null as Prato | null
+  })
+
+  if (!prato || prato.length === 0) {
+    return <h3 className="container">Carregando...</h3>
+  }
+
   return (
     <>
       <div className="container">
         <ListContainer>
-          {products.map((products) => (
+          {prato.map((prato) => (
             <ProductCard
-              key={products.id}
-              name={products.name}
-              photo={products.photo}
-              description={products.description}
-              onOpen={() => setModalIsOpen(true)}
+              id={prato.id}
+              key={prato.id}
+              name={prato.nome}
+              photo={prato.foto}
+              description={
+                prato.descricao.length
+                  ? [prato.descricao.slice(0, 150) + '...']
+                  : [prato.descricao]
+              }
+              onOpen={() => setModal({ isVisible: true, data: prato })}
             />
           ))}
         </ListContainer>
-        <MainModal className={modalIsOpen ? 'visivel' : ''}>
-          <div className="overlay">
-            <ModalContainer>
-              <img
-                src={closeIcon}
-                alt="Fechar"
-                onClick={() => setModalIsOpen(false)}
-              />
-              <ModalContent>
-                <img src={food} alt="Produto" />
-                <div>
-                  <h4>Nome do Produto</h4>
-                  <p>Descrição detalhada do produto.</p>
-                  <p>serve ate 5 pessoas</p>
-                  <BotaoModal>Adicionar ao Carrinho</BotaoModal>
-                </div>
-              </ModalContent>
-            </ModalContainer>
-          </div>
-        </MainModal>
+        <Modal
+          product={modal.data}
+          isVisible={modal.isVisible}
+          onClose={() => setModal({ isVisible: false, data: null })}
+        />
       </div>
     </>
   )
