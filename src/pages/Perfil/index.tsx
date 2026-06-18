@@ -3,21 +3,23 @@ import BannerPerfil from '../../components/Banner'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import ProductList from '../../components/ProductList'
-import { useEffect, useState } from 'react'
-import { Restaurants } from '../../components/Models/Restaurants'
+// import { useEffect, useState } from 'react'
+// import { Restaurants } from '../../components/Models/Restaurants'
+import { useGetPratosQuery } from '../../services/api'
 
 export const Perfil = () => {
   const { id } = useParams()
-  const [prato, setPratos] = useState<Restaurants>()
+  const { data: prato } = useGetPratosQuery(id!)
+  // const [prato, setPratos] = useState<Restaurants>()
 
-  useEffect(() => {
-    fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setPratos(res))
-  }, [id])
+  // useEffect(() => {
+  //   fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
+  //     .then((res) => res.json())
+  //     .then((res) => setPratos(res))
+  // }, [id])
 
   if (!prato) {
-    return <p>Carregando...</p>
+    return <h4>Carregando cardapio...</h4>
   }
 
   return (
