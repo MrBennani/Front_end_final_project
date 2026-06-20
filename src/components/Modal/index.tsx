@@ -2,6 +2,8 @@ import closeIcon from '../../assets/close.png'
 import { ModalContainer, MainModal, ModalContent, BotaoModal } from './styles'
 import { Pratos } from '../ProductList'
 import { formataPreco } from '../Utils'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
   product: Pratos | null
@@ -10,6 +12,15 @@ type Props = {
 }
 
 export const Modal = ({ product, isVisible, onClose }: Props) => {
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    if (product) {
+      dispatch(add(product))
+      dispatch(open())
+    }
+  }
+
   if (!isVisible || !product) return null
   return (
     <>
@@ -25,7 +36,7 @@ export const Modal = ({ product, isVisible, onClose }: Props) => {
               <p>
                 Serve de <span>{product.porcao}</span>
               </p>
-              <BotaoModal>
+              <BotaoModal onClick={addToCart}>
                 Adicionar ao Carrinho - {formataPreco(product.preco)}
               </BotaoModal>
             </div>
