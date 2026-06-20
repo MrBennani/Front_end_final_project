@@ -9,14 +9,8 @@ import { useGetPratosQuery } from '../../services/api'
 
 export const Perfil = () => {
   const { id } = useParams()
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const { data: prato } = useGetPratosQuery(id!)
-  // const [prato, setPratos] = useState<Restaurants>()
-
-  // useEffect(() => {
-  //   fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
-  //     .then((res) => res.json())
-  //     .then((res) => setPratos(res))
-  // }, [id])
 
   if (!prato) {
     return <h4>Carregando cardapio...</h4>
