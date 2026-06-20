@@ -8,7 +8,7 @@ import {
   TituloContainer
 } from './styles'
 import Tag from '../Tag'
-import Button from '../Button'
+import { ButtonLinkRC } from '../Button/styles'
 
 type Props = {
   id: number
@@ -44,13 +44,13 @@ const RestaurantCard = ({
         </div>
       </TituloContainer>
       <Descricao>{description}</Descricao>
-      <Button
+      <ButtonLinkRC
         type="link"
         to={`/Perfil/${id}`}
         title={'Clique aqui para saber mais'}
       >
         Saiba mais
-      </Button>
+      </ButtonLinkRC>
     </CardContent>
   </CardContainer>
 )
