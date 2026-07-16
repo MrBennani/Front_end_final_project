@@ -296,7 +296,7 @@ const Cart = () => {
           </form>
         </CheckoutSideBar>
       </CheckoutContainer>
-      {isSuccess ? (
+      {isSuccess && data ? (
         <ConclusionContainer className={isOpen ? 'is-open' : ''}>
           <SideBar>
             <div>
