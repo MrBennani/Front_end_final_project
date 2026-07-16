@@ -1,4 +1,9 @@
-import { ButtonContainer, ButtonLink, ButtonLinkRC } from './styles'
+import {
+  ButtonContainer,
+  ButtonLink,
+  ButtonLinkConclusion,
+  ButtonLinkRC
+} from './styles'
 
 type Props = {
   type: 'link' | 'button' | 'submit'
@@ -38,6 +43,9 @@ const Button = ({
       <ButtonLinkRC to={to as string} title={title}>
         {children}
       </ButtonLinkRC>
+      <ButtonLinkConclusion to={to as string} title={title}>
+        {children}
+      </ButtonLinkConclusion>
     </>
   )
 }

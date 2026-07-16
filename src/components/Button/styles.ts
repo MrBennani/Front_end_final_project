@@ -44,3 +44,14 @@ export const ButtonLinkRC = styled(Link)`
   display: inline-block;
   transition: all 0.3s ease;
 `
+
+export const ButtonLinkConclusion = styled(Link)`
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+`

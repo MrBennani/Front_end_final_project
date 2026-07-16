@@ -3,17 +3,20 @@ import BannerPerfil from '../../components/Banner'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import ProductList from '../../components/ProductList'
-// import { useEffect, useState } from 'react'
-// import { Restaurants } from '../../components/Models/Restaurants'
 import { useGetPratosQuery } from '../../services/api'
+import Cart from '../../components/Cart'
+import Loader from '../../components/Loader'
+
+type GameParams = {
+  id: string
+}
 
 export const Perfil = () => {
-  const { id } = useParams()
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const { data: prato } = useGetPratosQuery(id!)
+  const { id } = useParams() as GameParams
+  const { data: prato } = useGetPratosQuery(id)
 
   if (!prato) {
-    return <h4>Carregando cardapio...</h4>
+    return <Loader />
   }
 
   return (
@@ -21,6 +24,7 @@ export const Perfil = () => {
       <Header />
       <BannerPerfil titulo={prato.titulo} tipo={prato.tipo} capa={prato.capa} />
       <ProductList prato={prato.cardapio} />
+      <Cart />
       <Footer />
     </>
   )

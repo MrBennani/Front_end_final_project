@@ -3,6 +3,7 @@ import ProductCard from '../ProductCard'
 import { ListContainer } from './styles'
 import { Prato } from '../Models/Restaurants'
 import { Modal } from '../Modal'
+import Loader from '../Loader'
 
 export interface Pratos {
   id: number
@@ -24,7 +25,7 @@ export const ProductList = ({ prato }: Props) => {
   })
 
   if (!prato || prato.length === 0) {
-    return <h3 className="container">Carregando...</h3>
+    return <Loader />
   }
 
   return (

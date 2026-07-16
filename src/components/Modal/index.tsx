@@ -1,8 +1,8 @@
+import { useDispatch } from 'react-redux'
 import closeIcon from '../../assets/close.png'
 import { ModalContainer, MainModal, ModalContent, BotaoModal } from './styles'
 import { Pratos } from '../ProductList'
 import { formataPreco } from '../Utils'
-import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
 
 type Props = {
